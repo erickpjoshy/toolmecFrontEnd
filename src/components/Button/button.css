@@ -1,0 +1,10 @@
+.primary-button {
+  padding: 10px 20px;
+  color: #fff;
+  background: #000000;
+  max-width: 150px;
+  border: none;
+  margin: 10px 0;
+  width: auto;
+  border-radius: 6px;
+}

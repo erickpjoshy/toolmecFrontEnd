@@ -1,0 +1,24 @@
+.category-table {
+  width: 100%;
+}
+
+.category-table th {
+  border: 1px solid #fff;
+  max-width: 20px !important;
+  padding: 12px;
+  background-color: black;
+  color: #fff;
+}
+
+.category-table tr {
+  background-color: #fff;
+}
+
+.category-table tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+.category-table td {
+  text-align: center;
+  min-width: 100px;
+  padding: 12px;
+}

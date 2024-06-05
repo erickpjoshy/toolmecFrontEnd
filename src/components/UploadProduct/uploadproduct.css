@@ -1,0 +1,34 @@
+.prdbox {
+  background-color: rgb(228 228 228 / 98%);
+  max-height: 564px;
+  overflow: hidden;
+}
+
+.prdimginp {
+  background-color: #fff;
+}
+
+.prdbox form {
+  max-height: 400px;
+}
+
+.img-icon {
+  color: #9499a5;
+  font-size: 14px;
+}
+
+.imgcontainer {
+  width: 80px;
+  height: 80px;
+}
+
+.hover-icon {
+  display: none;
+  opacity: 0;
+  transition: opacity 200ms, display 200ms;
+}
+.imgcontainer:hover .hover-icon {
+  transition: opacity 200ms, display 200ms;
+  display: block;
+  opacity: 1;
+}

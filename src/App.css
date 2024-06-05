@@ -1,0 +1,9 @@
+.content {
+  position: relative;
+  margin-top: 5.5rem;
+}
+
+/* ----scrollbar-hidden----- */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,52 @@
+.signup {
+  margin: 60px auto;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  width: auto;
+}
+
+.signup .paragraph:hover {
+  color: #707070 !important;
+  cursor: pointer;
+}
+
+.signup h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.signup p {
+  color: #f40006;
+  text-align: center;
+  font-size: 14px;
+  padding: 16px 2px;
+}
+
+.eye {
+  padding: 38px 20px;
+  color: #707070;
+}
+
+.user-image {
+  border: 1px solid #707070;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.user-image i {
+  font-size: 34px;
+  color: #707070;
+}
+
+.user-image .user-text {
+  background-color: #d4d4d430;
+}
+
+.user-image form {
+  bottom: -15px;
+  left: -12px;
+  position: absolute;
+  opacity: -2;
+}

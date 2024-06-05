@@ -1,0 +1,35 @@
+.active.act-class {
+  color: #fff;
+  background-color: black;
+}
+
+.prd-card {
+  min-height: 245px;
+}
+
+.prd-card .heading {
+  min-height: 50px;
+}
+.prd-card .heading h1 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+.prd-card .img-container {
+  height: 186px;
+  width: 186px;
+}
+
+.prd-card .icon-bg {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prd-card .icon-bg :hover {
+  color: red;
+}

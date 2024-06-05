@@ -1,0 +1,14 @@
+.custom-textarea {
+  width: 100%;
+  height: 108px;
+  border: 1px solid #eee;
+  margin: 8px 0;
+  padding: 13px 18px;
+  color: #c10005 !important;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.custom-textarea:focus-visible {
+  outline: red solid 1px !important;
+}

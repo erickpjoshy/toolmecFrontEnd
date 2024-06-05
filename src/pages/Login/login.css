@@ -1,0 +1,30 @@
+.login {
+  margin: 60px auto;
+  height: 500px;
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  width: auto;
+}
+
+.login .paragraph:hover {
+  color: #707070 !important;
+  cursor: pointer;
+}
+
+.login h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login p {
+  color: #f40006;
+  text-align: center;
+  font-size: 14px;
+  padding: 16px 2px;
+}
+
+.eye {
+  padding: 38px 20px;
+  color: #707070;
+}

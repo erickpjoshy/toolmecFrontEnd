@@ -1,0 +1,8 @@
+.cart .custom-input,
+.cart .custom-select {
+  margin: 8px 0;
+}
+
+.large-field {
+  height: 100px;
+}
