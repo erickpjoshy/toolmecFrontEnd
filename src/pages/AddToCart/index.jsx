@@ -25,8 +25,19 @@ function AddToCart() {
 
   const content = <div style={contentStyle} />;
   const getProducts = async () => {
+    orderPost.cartProducts = [];
     const result = await axios.get(`addtocart/${id}`);
     setProducts(result.data);
+    const cartIds = result.data.map(item => {
+      return item._id;
+    });
+    // console.log(cartIds);
+
+    setOrderPost({
+      ...orderPost,
+      cartProducts: [...orderPost.cartProducts, ...cartIds],
+    });
+
     setLoading(false);
   };
   useEffect(() => {
@@ -89,6 +100,14 @@ function AddToCart() {
   // ---------------------------------------------------
 
   const [orderPost, setOrderPost] = useState({
+    user: '',
+    userName: '',
+    cartProducts: [],
+    deliveryType: '',
+    phoneOne: '',
+    phoneTwo: '',
+    deliveryAddress: '',
+    deliveryPlace: '',
     state: '',
     district: '',
   });
@@ -97,6 +116,11 @@ function AddToCart() {
   const getUserDetails = async () => {
     const response = await axios.get(`user/profile/${getLogedId()}`);
     setUser(response.data);
+    setOrderPost({
+      ...orderPost,
+      userName: response.data.name,
+      user: response.data._id,
+    });
   };
   // ----------------end get user---------------------
 
@@ -108,14 +132,16 @@ function AddToCart() {
     console.log(response.data);
     setStates(response.data);
   };
-  const stateFunction = async e => {
+  const stateFunction = async (e, key) => {
+    orderPost.district = '';
+    // setOrderPost({ ...orderPost, district: '' });
     const stateId = e.target.value;
     setOrderPost({ ...orderPost, state: stateId });
     const response = await axios.get(`location/district/${stateId}`);
     setDistricts(response.data);
   };
 
-  console.log(districts);
+  // console.log(districts);
   useEffect(() => {
     getUserDetails();
     getStates();
@@ -125,7 +151,12 @@ function AddToCart() {
     setOrderPost({ ...orderPost, [key]: e.target.value });
   };
 
+  const orderTypePostFunction = (value, key) => {
+    setOrderPost({ ...orderPost, [key]: value });
+  };
+
   console.log(orderPost);
+  // console.log(product);
   return (
     <>
       <Header />
@@ -199,7 +230,7 @@ function AddToCart() {
                     );
                   })}
                 </div>
-                <div className="side-class w-full h-32 max-w-sm mb-10">
+                <div className="side-class w-full h-32 md:max-w-sm max-w-full mb-10">
                   <h2 className="text-lg text-left">PAYMENT</h2>
                   <form className="text-sm flex flex-col gap-2 pt-2 pb-6">
                     <div className="flex items-center gap-2">
@@ -207,24 +238,55 @@ function AddToCart() {
                       <label>Credit Card</label>
                     </div>
                     <div className="flex items-center gap-2">
-                      <input type="radio" name="sortBy" />
+                      <input
+                        onChange={e =>
+                          orderTypePostFunction(
+                            'cashOnDelivery',
+                            'deliveryType'
+                          )
+                        }
+                        type="radio"
+                        name="sortBy"
+                      />
                       <label>Cash On Delivery</label>
                     </div>
                   </form>
                   <h2 className="text-lg text-left">ADDRESS</h2>
-                  <Input placeHolder="Name" value={user?.name} />
-                  <Input placeHolder="Phone Number" />
-                  <Input placeHolder="Phone Number 2" />
-                  <TextArea className="large-field" placeHolder="Adress" />
+                  <Input
+                    placeHolder="Name"
+                    value={orderPost.userName}
+                    onChange={e => orderPostFunction(e, 'userName')}
+                  />
+                  <Input
+                    type="number"
+                    placeHolder="Phone Number"
+                    onChange={e => orderPostFunction(e, 'phoneOne')}
+                  />
+                  <Input
+                    type="number"
+                    placeHolder="Phone Number 2"
+                    onChange={e => orderPostFunction(e, 'phoneTwo')}
+                  />
+                  <TextArea
+                    className="large-field"
+                    placeHolder="Adress"
+                    onChange={e => orderPostFunction(e, 'deliveryAddress')}
+                  />
+                  <Input
+                    placeHolder="Place"
+                    onChange={e => orderPostFunction(e, 'deliveryPlace')}
+                  />
                   <Select
                     options={states}
                     placeHolder="States"
-                    onChange={e => stateFunction(e)}
+                    onChange={e => stateFunction(e, 'state')}
+                    value={orderPost.state}
                   />
                   <Select
                     options={districts}
                     placeHolder="Districts"
                     onChange={e => orderPostFunction(e, 'district')}
+                    value={orderPost.district}
                   />
                   <div className="bg-slate-200 mt-8">
                     <h2 className="text-white bg-red-600 px-4 py-1 text-lg text-left">
@@ -239,7 +301,7 @@ function AddToCart() {
                       <p className="text-left">Total Price</p>
                       <p>{displayINRCurrency(totalPrice)}</p>
                     </div>
-                    <button className="bg-blue-600 text-white w-full p-2 text-lg">
+                    <button className="bg-blue-600 text-white w-full p-2 text-lg border border-red-700">
                       Payment
                     </button>
                   </div>

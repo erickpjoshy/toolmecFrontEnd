@@ -9,6 +9,7 @@ const Select = ({
   disabled,
   id,
   name,
+  value = '',
 }) => {
   return (
     <div>
@@ -19,8 +20,9 @@ const Select = ({
         autoComplete="on"
         id={id}
         name={name}
+        value={value || ''}
       >
-        <option className="disableoption" selected disabled>
+        <option className="disableoption" value="" disabled>
           {placeHolder}
         </option>
         {options.map((value, i) => {
